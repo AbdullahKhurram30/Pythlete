@@ -8,5 +8,7 @@ setup(
     author='Muhammad Abdullah Khan',
     author_email='abdullah.khurram@uni.minerva.edu',
     packages=['pythlete'],
-    install_requires=['pandas']
+    install_requires=['fastf1==3.1.3', 'ipython==8.22.1', 'matplotlib==3.5.3',
+                      'numpy==1.22.4', 'pandas==1.4.4', 'scipy==1.7.3',
+                      'seaborn==0.11.1']
 )
