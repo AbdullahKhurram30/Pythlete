@@ -1,5 +1,6 @@
 from pythlete import safetycar
 from pythlete import telemetry
+from pythlete import general
 
 # # run the simulation with and without safety car
 # safetycar.simulation_results(1, 'NED', 'HAM', safety_car = 0)
@@ -7,7 +8,7 @@ from pythlete import telemetry
 
 
 # #first step is to load the session
-# session = telemetry.load_session(2021, 'Spanish Grand Prix', 'Q')
+# session = general.load_session(2021, 'Spanish Grand Prix', 'Q')
 # # get circuit information
 # circuit_info = telemetry.circuit_info(session)
 # # get fastest laps for the two drivers
