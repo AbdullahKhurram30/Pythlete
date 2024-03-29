@@ -5,6 +5,4 @@ dist
 *.egg-info
 .pypirc
 venv
-
-# ignore setup.py
-setup.py
+setup
