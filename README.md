@@ -4,9 +4,9 @@ This is the package's repository. This is the final code that will be published.
 
 You can find the package download instructions on this link: https://pypi.org/project/pythlete/
 
-Or just run this in a python environment
+Or just run this in a Python environment
 ```
 pip install pythlete
 ```
 
-Please see sampleuses.py for how to use the package.
+Please see the "uses" folder above for how to use the package. All uses are included in notebook format.
