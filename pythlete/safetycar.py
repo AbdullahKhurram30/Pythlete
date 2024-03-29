@@ -4,6 +4,24 @@ import matplotlib.pyplot as plt
 import scipy.stats as sts
 from IPython.display import display
 
+
+class Grid:
+    '''
+    A class to represent the grid of a Formula 1
+    '''
+    def __init__(self, cars, teams, time):
+        '''
+        Constructor for the Grid class
+        
+        Parameters:
+            cars (list): A list of strings representing the cars on the grid
+            teams (list): A list of strings representing the teams on the grid
+            time (list): A list of floats representing the time gap to the leader
+        '''
+        self.cars = cars
+        self.teams = teams
+        self.time = time
+
 # Some globally available variables
 cars = ['HAM', 'RUS', 'PER', 'VER', 'LEC', 'SAI', 'ALO', 'OCO', 'NOR', 'RIC', 'VET', 'STR', 'MSC', 'MAG', 
           'GAS', 'TSU','ALB', 'LAT',  'BOT', 'ZHO']
