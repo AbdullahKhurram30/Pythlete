@@ -4,6 +4,13 @@ import matplotlib.pyplot as plt
 import scipy.stats as sts
 from IPython.display import display
 
+# Some globally available variables
+# These variables will not be used if the reader defines their own data but are default values based on the current grid.
+cars = ['HAM', 'RUS', 'PER', 'VER', 'LEC', 'SAI', 'ALO', 'OCO', 'NOR', 'RIC', 'VET', 'STR', 'MSC', 'MAG', 
+          'GAS', 'TSU','ALB', 'SAR',  'BOT', 'ZHO']
+teams = (['Mercedes']*2 + ['Red Bull']*2 + ['Ferrari']*2 + ['Alpine']*2 + ['Mclaren']*2 + ['AstonMartin']*2 + 
+         ['Haas']*2 + ['AlphaTauri']*2 + ['Williams']*2 + ['AlphaRomeo']*2)
+time = [0, 17.54, 18.69, 20.0, 15.4, 21.2, 23.4, 28.3, 48.6, 32.2, 37.5, 40.2, 44.7, 50.2, 51.2, 56.8, 59.8, 70.4, 49.2, 53.2]
 
 class Grid:
     '''
@@ -22,14 +29,6 @@ class Grid:
         self.teams = teams
         self.time = time
 
-# Some globally available variables
-cars = ['HAM', 'RUS', 'PER', 'VER', 'LEC', 'SAI', 'ALO', 'OCO', 'NOR', 'RIC', 'VET', 'STR', 'MSC', 'MAG', 
-          'GAS', 'TSU','ALB', 'LAT',  'BOT', 'ZHO']
-teams = (['Mercedes']*2 + ['Red Bull']*2 + ['Ferrari']*2 + ['Alpine']*2 + ['Mclaren']*2 + ['AstonMartin']*2 + 
-         ['Haas']*2 + ['AlphaTauri']*2 + ['Williams']*2 + ['AlphaRomeo']*2)
-time = [0, 17.54, 18.69, 20.0, 15.4, 21.2, 23.4, 28.3, 48.6, 32.2, 37.5, 40.2, 44.7, 50.2, 51.2, 56.8, 59.8, 70.4, 49.2, 53.2]
-
-
 def load_track_data():
     '''
     Function to load the track data for the Formula 1 calendar
@@ -47,9 +46,11 @@ def load_track_data():
     df = pd.DataFrame({'tracks': tracks, 'times': times, 'times_sf': times_sf})
     return df
 
-def load_sample_race():
+def load_sample_race(cars = cars, time = time, teams = teams):
     '''
     Function to load a sample race scenario
+
+    If you want to use your own race scenario, define an object based on the arguments and pass that to the function to load the race.
 
     Returns
     -------
@@ -78,7 +79,7 @@ def simulate_pit_stop(change):
 def pit_track_confint(change, track, driver, safety_car = 0):
     '''
     Output:
-        A function that returns the confidence intervals as well as the results from a probabilistic model
+        A function that returns the predictive intervals as well as the results from a probabilistic model
         
     Returns:
         A tuple of lists. The first list contains the two values for the 95% confidence interval. The second is
@@ -204,7 +205,7 @@ def simulation_results(change, track, driver, safety_car = 0):
     old_position_lower = int(lower[lower['driver'] == driver].previous_position)
     print('\n')
     print("Lower bound:")
-    print('Lower bound of 95% confidence interval: ', new_position_lower, '\n' 'We lose: ', new_position_lower - old_position_lower, 'positions', '\n' 'New Estimated time = ', round(possible_gap_lower, 2))
+    print('Lower bound of 95% prediction interval: ', new_position_lower, '\n' 'We lose: ', new_position_lower - old_position_lower, 'positions', '\n' 'New Estimated time = ', round(possible_gap_lower, 2))
    
     # repeat calculations for upper bound of 95% confidence interval
     possible_gap_upper = current_gap + confint[0][1]
@@ -216,7 +217,7 @@ def simulation_results(change, track, driver, safety_car = 0):
     old_position_upper = int(upper[upper['driver'] == driver].previous_position)
     print('\n')
     print("Upper bound:")
-    print('Upper bound of 95% confidence interval: ', new_position_upper, '\n' 'We lose: ', new_position_upper - old_position_upper, 'positions' '\n' 'New Estimated time = ', round(possible_gap_upper, 2))
+    print('Upper bound of 95% prediction interval: ', new_position_upper, '\n' 'We lose: ', new_position_upper - old_position_upper, 'positions' '\n' 'New Estimated time = ', round(possible_gap_upper, 2))
     # plot the simulation results along with the 95% confidence interval
     plt.figure()
     plt.title('Simulation results')
@@ -224,7 +225,7 @@ def simulation_results(change, track, driver, safety_car = 0):
     plt.ylabel('Probability')
     plt.hist([result + current_gap for result in simulation_results], bins = 25, edgecolor = 'white', density = True)
     plt.axvline(possible_gap_upper, color = 'yellow')
-    plt.axvline(possible_gap_lower, color = 'yellow', label = '95% confidence intervals')
+    plt.axvline(possible_gap_lower, color = 'yellow', label = '95% prediction intervals')
     plt.axvline(new_time, color = 'red', label = 'Expected value of results')
     plt.legend()
     plt.show()

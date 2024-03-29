@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pythlete',
-    version='0.1.2',
+    version='0.1.7',
     description='Python package for instantaneous decision making in sports',
     url='https://github.com/AbdullahKhurram30/Pythlete',
     author='Muhammad Abdullah Khan',

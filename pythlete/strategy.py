@@ -424,7 +424,7 @@ def plot_simulated_tire_performance(lap_times_df):
     lap_times_df: dataframe
         the dataframe of the lap times
     '''
-        # set the background to be black to make the colors easier to read and standardize the style
+    # set the background to be black to make the colors easier to read and standardize the style
     sns.set_style("ticks", rc = {"axes.facecolor": "black", "figure.facecolor": "grey"})
     fig, ax = plt.subplots()
 
@@ -451,7 +451,7 @@ def plot_simulated_tire_performance(lap_times_df):
     ax.set_ylim(0, 1)
     ax.set_xlabel("Lap Number")
     ax.set_ylabel("Tire Performance")
-    plt.suptitle(f"The driver's Simulated Tire Performance at {lap_times_df.Race[0]}")
+    plt.suptitle(f"The driver's Simulated Tire Performance at the race.")
     plt.grid(color = "w", which = 'major', axis = 'both')
     sns.despine(left = True, bottom = True)
 
