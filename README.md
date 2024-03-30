@@ -1,5 +1,7 @@
 # Pythlete
 
+Pythlete is a package designed to enhance data-based decision-making in sports. While future versions of the package will include other sports as well, the current version is designed to improve decision-making in Formula 1 racing.
+
 This is the package's repository. This is the final code that will be published. Please find the working repository where I am ideating at this link: <https://github.com/AbdullahKhurram30/Pythlete-Working>
 
 You can find the package download instructions on this link: <https://pypi.org/project/pythlete/>
